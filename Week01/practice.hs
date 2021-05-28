@@ -1,9 +1,3 @@
-toDigits :: Integral n => n -> [n]
-toDigits 0 = []
-toDigits n
- | n < 0 = []
- | otherwise = toDigits (n `div` 10) ++ [n `mod` 10]
-
 
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev 0 = []
