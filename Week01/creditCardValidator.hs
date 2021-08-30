@@ -18,5 +18,8 @@ sumDigits (x:xs) | x > 9 = (1 + x `mod` 10) + sumDigits xs
 
 validate :: Integer -> Bool
 validate n
- | sumDigits (doubleEveryOther (toDigitsRev n)) `mod` 10 == 0 = True 
+ | sumDigits (doubleEveryOther (toDigitsRev n)) `mod` 10 == 0 = True
  | otherwise = False
+~                                                                                                                                                                                                          
+~                                                                                                                                                                                                          
+~                                        
