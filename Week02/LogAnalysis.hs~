@@ -1,0 +1,23 @@
+{-# OPTIONS_GHC -Wall #-}
+
+
+module LogAnalysis where
+import Log
+import Data.List.Split
+
+parseMessage :: String -> LogMessage
+parseMessage mesg = case words mesg of
+                  ("I":t:s)   -> LogMessage Info    (read t :: Int)  ((unwords s) :: String)
+                  ("W":t:s)   -> LogMessage Warning (read t :: Int)  ((unwords s) :: String)
+                  ("E":i:t:s) -> LogMessage (Error  (read i :: Int)) (read t :: Int) ((unwords s) :: String)
+                  _           -> Unknown mesg
+
+parse :: String -> [LogMessage]
+parse n
+  | n == [] = []
+  | otherwise = parseMessage str : parse ls
+       where
+	       str = unwords (take 1 $ lines n)
+               ls  = unlines (drop 1 $ lines n)
+
+
